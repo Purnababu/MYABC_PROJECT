@@ -4,7 +4,9 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
@@ -18,14 +20,19 @@ import lombok.NoArgsConstructor;
 public class Complaint {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int complaintId;
-	private String productModelNumber;
+
 	private String complaintName;
 	private String status;
-	@OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+
+	@ManyToOne()
 	private Engineer engineer;
-	@OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+
+	@ManyToOne()
 	private Client client;
+
+	@OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+	private Product product;
 
 }

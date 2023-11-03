@@ -2,7 +2,9 @@ package com.example.ABCElectronic_smartDevice.entity;
 
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,18 +19,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Product {
-	
-	
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int modelNumber;
+	@GeneratedValue
+	private String modelNumber;
 	private String productName;
-	private  String CategoryName ;
-	private LocalDate  dateofPurchase;
+	private String productCategoryName;
+	private LocalDate dateofPurchase;
 	private int warrentyyears;
 	private LocalDate warrantyDate;
-	
-	@OneToOne
-	private Client client;
-	
+
 }

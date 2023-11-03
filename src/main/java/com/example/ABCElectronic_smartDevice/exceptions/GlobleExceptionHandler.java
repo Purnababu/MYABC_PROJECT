@@ -19,31 +19,36 @@ public class GlobleExceptionHandler {
 	}
 
 	
+	@ExceptionHandler(InValidClientIdException.class)
+	public ResponseEntity<?> handlerCustomerAlreadyExistsException(InValidClientIdException ex, WebRequest request) {
+		ErrorDetails error = new ErrorDetails(new Date(), ex.getMessage(), request.getDescription(false));
+		return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+	}
 	
-	@ExceptionHandler(InValidDomainException .class)
+	
+	
+	@ExceptionHandler(ResourceNotFoundException.class)
+	public ResponseEntity<?> handlerCustomerAlreadyExistsException(ResourceNotFoundException ex, WebRequest request) {
+		ErrorDetails error = new ErrorDetails(new Date(), ex.getMessage(), request.getDescription(false));
+		return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+	}
+
+	@ExceptionHandler(InValidDomainException.class)
 	public ResponseEntity<?> handlerCustomerAlreadyExistsException(InValidDomainException ex, WebRequest request) {
 		ErrorDetails error = new ErrorDetails(new Date(), ex.getMessage(), request.getDescription(false));
 		return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
 	}
-	
-	
-	
-	
-	@ExceptionHandler(InValidEngineerIdException .class)
+
+	@ExceptionHandler(InValidEngineerIdException.class)
 	public ResponseEntity<?> handlerCustomerAlreadyExistsException(InValidEngineerIdException ex, WebRequest request) {
 		ErrorDetails error = new ErrorDetails(new Date(), ex.getMessage(), request.getDescription(false));
 		return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
 	}
-	
-	
-	
-	@ExceptionHandler(OutOfWarrantyException .class)
+
+	@ExceptionHandler(OutOfWarrantyException.class)
 	public ResponseEntity<?> handlerCustomerAlreadyExistsException(OutOfWarrantyException ex, WebRequest request) {
 		ErrorDetails error = new ErrorDetails(new Date(), ex.getMessage(), request.getDescription(false));
 		return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
 	}
-	
-	
-	
-	
+
 }
