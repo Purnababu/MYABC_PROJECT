@@ -1,12 +1,13 @@
 package com.example.ABCElectronic_smartDevice.entity;
 
 import java.time.LocalDate;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,19 +17,16 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Product {
-	
-	
+public class Product 
+{	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int modelNumber;
 	private String productName;
-	private  String CategoryName ;
-	private LocalDate  dateofPurchase;
-	private int warrentyyears;
+	private String productCategoryName;
+	private LocalDate dateOfPurchase;
+	private int warrantyYears;
 	private LocalDate warrantyDate;
 	
-	@OneToOne
-	private Client client;
-	
+	@OneToMany(cascade = CascadeType.MERGE,fetch = FetchType.LAZY,mappedBy = "product")
+	private List<Complaint> complaints;
 }

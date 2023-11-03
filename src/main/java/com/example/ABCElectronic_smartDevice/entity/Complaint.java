@@ -1,11 +1,10 @@
 package com.example.ABCElectronic_smartDevice.entity;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,17 +14,20 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Complaint {
-
+public class Complaint 
+{
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int complaintId;
-	private String productModelNumber;
 	private String complaintName;
 	private String status;
-	@OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+	
+	@ManyToOne
 	private Engineer engineer;
-	@OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+	
+	@ManyToOne
 	private Client client;
-
+	
+	@ManyToOne
+	private Product product;
 }
