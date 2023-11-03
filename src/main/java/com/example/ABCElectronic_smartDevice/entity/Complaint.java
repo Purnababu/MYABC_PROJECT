@@ -30,6 +30,4 @@ public class Complaint
 
 	@ManyToOne
 	private Product product;
-
-
 }

@@ -18,7 +18,6 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-
 public class Product 
 {	
 	@Id
@@ -31,4 +30,5 @@ public class Product
 	
 	@OneToMany(cascade = CascadeType.MERGE,fetch = FetchType.LAZY,mappedBy = "product")
 	private List<Complaint> complaints;
+
 }
