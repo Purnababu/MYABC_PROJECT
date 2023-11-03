@@ -1,6 +1,7 @@
 package com.example.ABCElectronic_smartDevice.entity;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -8,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
@@ -28,5 +30,8 @@ public class Product {
 	private LocalDate dateofPurchase;
 	private int warrentyyears;
 	private LocalDate warrantyDate;
+	
+	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "product")
+	private List<Complaint> complaints;
 
 }

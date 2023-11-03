@@ -32,7 +32,7 @@ public class Complaint {
 	@ManyToOne()
 	private Client client;
 
-	@OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+	@ManyToOne()
 	private Product product;
 
 }
