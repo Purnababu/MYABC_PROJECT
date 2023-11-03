@@ -5,8 +5,11 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+ 
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -20,17 +23,17 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Client {
-
 	@Id
-	@GeneratedValue
 	private String clientId;
 	private String password;
 	private String address;
 	private long phoneNumber;
+
 	@OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
 	private Product product;
 
 	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "client")
 	private List<Complaint> complaints;
+
 
 }
