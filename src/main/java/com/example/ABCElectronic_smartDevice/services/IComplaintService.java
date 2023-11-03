@@ -1,7 +1,6 @@
 package com.example.ABCElectronic_smartDevice.services;
 
 import java.util.List;
-
 import com.example.ABCElectronic_smartDevice.entity.Client;
 import com.example.ABCElectronic_smartDevice.entity.Complaint;
 import com.example.ABCElectronic_smartDevice.entity.Engineer;
@@ -20,4 +19,5 @@ public interface IComplaintService
 	public Engineer getEngineer(int engineerId);
 	
 	public Product getProductByComplaint(int complaintId);
+
 }

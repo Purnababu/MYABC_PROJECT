@@ -1,5 +1,6 @@
 package com.example.ABCElectronic_smartDevice.services;
 
+
 import java.util.List;
 
 import com.example.ABCElectronic_smartDevice.entity.Complaint;
@@ -22,5 +23,4 @@ public interface IAdminService
 	public List<Complaint> getComplaints(String complaintName, int modelNumber) throws InValidModelNumberException, ResourceNotFoundException;
 	
 	public Complaint replaceEngineerFromComplaint(int complaintId) throws InValidComplaintIdException;
-
 }

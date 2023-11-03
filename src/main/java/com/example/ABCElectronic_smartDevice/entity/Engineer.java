@@ -14,6 +14,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -26,7 +27,6 @@ public class Engineer
 	private String engineerName;
 	private String password;
 	private String domain;
-	
-	@OneToMany(cascade = CascadeType.MERGE,fetch = FetchType.LAZY,mappedBy = "engineer")
+	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy ="engineer")
 	private List<Complaint> complaints;
 }
