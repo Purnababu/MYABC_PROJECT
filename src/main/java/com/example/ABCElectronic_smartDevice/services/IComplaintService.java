@@ -11,14 +11,16 @@ public interface IComplaintService
 {
 	public boolean bookComplaint(Client client, Complaint complaint, Product product);
 	
-	public String changeComplaintStatus(Complaint complaint);
+	public String changeComplaintStatus(Complaint complaint) throws Exception;
 	
 	public List<Complaint> getClientAllComplaints(Client client) throws ResourceNotFoundException;
 	
-	public List<Complaint> getClientAllOpenComplaints(Client client);
+	public List<Complaint> getClientAllOpenComplaints(Engineer engineer);
 	
 	public Engineer getEngineer(int engineerId) throws ResourceNotFoundException;
 	
 	public Product getProductByComplaint(int complaintId);
+
+	
 
 }

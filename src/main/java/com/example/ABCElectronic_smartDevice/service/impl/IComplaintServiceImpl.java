@@ -66,9 +66,20 @@ public class IComplaintServiceImpl implements IComplaintService {
 	}
 
 	@Override
-	public String changeComplaintStatus(Complaint Complaint) {
+	public String changeComplaintStatus(Complaint Complaint) throws Exception {
+		Complaint existingComplaint = cmr.findById(Complaint.getComplaintId()).orElse(null);
 
-		return null;
+		if (existingComplaint == null) {
+			throw new Exception("Complaint not found");
+		}
+
+		// Update the status of the existing complaint.
+		existingComplaint.setStatus(Complaint.getStatus());
+
+		// Save the updated complaint.
+		cmr.save(existingComplaint);
+
+		return "Complaint status updated successfully";
 	}
 
 	//// product model number is with in the table of complaint in db so complaint
@@ -86,9 +97,10 @@ public class IComplaintServiceImpl implements IComplaintService {
 	}
 
 	@Override
-	public List<Complaint> getClientAllOpenComplaints(Client client) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Complaint> getClientAllOpenComplaints(Engineer engineer) {
+		List<Complaint> openComplaints = cmr.findOpenComplaintsByEngineer(engineer);
+		return openComplaints;
+
 	}
 
 }

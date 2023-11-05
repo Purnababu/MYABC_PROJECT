@@ -12,7 +12,7 @@ public interface IEngineerService {
 	public List<Complaint> getResolvedComplaints(Engineer engineer);
 	public List<Complaint> getResolvedComplaintsByDate(Engineer engineer,LocalDate  date);
 	public List<Complaint> getComplaints(Engineer engineer, String complaintName);
-	public String changeComplaintStatus(int complaintId);
+	
 	
 }
 
