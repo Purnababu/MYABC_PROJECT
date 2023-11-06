@@ -23,11 +23,9 @@ import com.example.ABCElectronic_smartDevice.services.IEngineerService;
 @RestController
 @RequestMapping("/api/complaint")
 public class ComplaintController {
-
+    
 	@Autowired
 	private IComplaintService crs;
-
-	
 
 	@PostMapping("/api/bookcomplaint")
 	public ResponseEntity<?> bookComplaint(@RequestBody Client client, Complaint complaint, Product product) {
@@ -36,7 +34,7 @@ public class ComplaintController {
 		return new ResponseEntity<>(b, HttpStatus.CREATED);
 	}
 
-	@GetMapping("viweall-complaints")
+	@GetMapping(value = "//viweall-complaints", produces = "application/json")
 	public ResponseEntity<List<Complaint>> getClientAllComplaints(Client client) throws ResourceNotFoundException {
 		return new ResponseEntity<List<Complaint>>(crs.getClientAllComplaints(client), HttpStatus.OK);
 	}
@@ -49,7 +47,4 @@ public class ComplaintController {
 		return new ResponseEntity<Engineer>(crs.getEngineer(engineerId), HttpStatus.OK);
 	}
 
-	
-
-	
 }
