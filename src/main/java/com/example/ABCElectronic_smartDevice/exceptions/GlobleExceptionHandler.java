@@ -45,5 +45,15 @@ public class GlobleExceptionHandler {
 	
 	
 	
+	@ExceptionHandler(ResourceNotFoundException.class)
+	public ResponseEntity<?> handlerResourceNotFoundException(ResourceNotFoundException ex, WebRequest request) {
+		ErrorDetails error = new ErrorDetails(new Date(), ex.getMessage(), request.getDescription(false));
+		return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+	}
+	@ExceptionHandler(ProductAllreadyExistException.class)
+	public ResponseEntity<?> handlerProductAllreadyExistException(ProductAllreadyExistException ex, WebRequest request) {
+		ErrorDetails error = new ErrorDetails(new Date(), ex.getMessage(), request.getDescription(false));
+		return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
 	
+}
 }
