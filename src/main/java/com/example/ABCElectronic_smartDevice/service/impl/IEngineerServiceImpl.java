@@ -20,14 +20,14 @@ public class IEngineerServiceImpl implements IEngineerService {
 	private IEngineerRepository engineerrepo;
 
 	@Autowired
-	public void setEngineerService(IEngineerRepository engineerrepo) {
+	public void setEngi(IEngineerRepository engineerrepo) {
 		this.engineerrepo = engineerrepo;
 	}
 
 	private IComplaintRepository complaintrepo;
 
 	@Autowired
-	public void setComplaintService(IComplaintRepository complaintrepo) {
+	public void setComp(IComplaintRepository complaintrepo) {
 		this.complaintrepo = complaintrepo;
 	}
 
