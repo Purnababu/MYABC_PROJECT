@@ -1,5 +1,10 @@
 package com.example.ABCElectronic_smartDevice.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -14,6 +19,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Client {
 
+	@Id
 	private String clientId;
 	private String password;
 	private String address;
@@ -24,6 +30,5 @@ public class Client {
 
 	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "client")
 	private List<Complaint> complaints;
-
 
 }
