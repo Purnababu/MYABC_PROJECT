@@ -9,7 +9,7 @@ import com.example.ABCElectronic_smartDevice.entity.Product;
 
 public interface IComplaintService 
 {
-	public boolean bookComplaint(Client client, Complaint complaint, Product product);
+	public boolean bookComplaint(int clientId, Complaint complaint, int modelNumber);
 	
 	public String changeComplaintStatus(Complaint complaint);
 	

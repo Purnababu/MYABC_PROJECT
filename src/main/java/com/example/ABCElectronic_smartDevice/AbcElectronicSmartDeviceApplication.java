@@ -24,6 +24,6 @@ public class AbcElectronicSmartDeviceApplication {
 	@Bean
     Docket productApi() {
 		return new Docket(DocumentationType.SWAGGER_2).select()
-			.apis(RequestHandlerSelectors.basePackage("com.abc.main")).build();
+			.apis(RequestHandlerSelectors.basePackage("com.example.ABCElectronic_smartDevice")).build();
 		}
 }

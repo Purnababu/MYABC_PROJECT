@@ -10,13 +10,13 @@ public interface IProductService
 {
 	public void addProduct(Product product);
 	
-	public void removeProduct(String modelNumber);
+	public void removeProduct(int modelNumber);
 	
-	public List<Product> getProducts(String modelNumber);
+	public List<Product> getProduct(int modelNumber);
 	
-	public void updateProductWarranty(String modelNumber);
+	public void updateProductWarrenty(Product product);
 	
-	public List<Complaint> getProductComplaints(String productName);
+	public List<Complaint> getProductComplients(int modelNumber);
 	
-	public List<Engineer> getEngineersByProduct(String productName);
+	public Engineer getEngineerByProduct(int modelNumber);
 }

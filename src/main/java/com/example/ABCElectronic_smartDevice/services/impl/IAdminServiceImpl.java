@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.example.ABCElectronic_smartDevice.entity.Complaint;
 import com.example.ABCElectronic_smartDevice.entity.Engineer;
@@ -17,6 +18,7 @@ import com.example.ABCElectronic_smartDevice.repository.IEngineerRepository;
 import com.example.ABCElectronic_smartDevice.repository.IProductRepository;
 import com.example.ABCElectronic_smartDevice.services.IAdminService;
 
+@Service
 public class IAdminServiceImpl implements IAdminService
 {
 	@Autowired
@@ -59,16 +61,9 @@ public class IAdminServiceImpl implements IAdminService
 	@Override
 	public List<Complaint> getComplaintsByProducts(int modelNumber) throws InValidModelNumberException, ResourceNotFoundException 
 	{
-		Product product = productRepository.findById(modelNumber).orElseThrow(()->
-			new InValidModelNumberException("Model Number doesnot exists with :"+modelNumber));
-		if(product.getComplaints().isEmpty())
-		{
-			throw new ResourceNotFoundException("No Complaints available on this modelNumber :"+modelNumber);
-		}
-		else
-		{
-			return product.getComplaints();
-		}
+		Product pr = productRepository.findById(modelNumber).orElseThrow(()-> 
+					new InValidModelNumberException("Model Number Doesnot exists...!!"));
+		return pr.getComplaints();
 	}
 
 	@Override
@@ -76,8 +71,6 @@ public class IAdminServiceImpl implements IAdminService
 	{
 		Product c = productRepository.findById(modelNumber).orElseThrow(()-> 
 			new InValidModelNumberException("Model Number doesnot exists with :"+modelNumber));
-//		Object object = complaintRepository.getComplaintName(complaintName).orElseThrow(()-> 
-//			new ResourceNotFoundException("Complaint name does not exists with :"+complaintName));
 		return c.getComplaints();
 	}
 
@@ -86,8 +79,11 @@ public class IAdminServiceImpl implements IAdminService
 	{
 		Complaint cId = complaintRepository.findById(complaintId).orElseThrow(()->
 				new InValidComplaintIdException("Complaint Id doesnot Exists with Id :"+complaintId));
-		complaintRepository.deleteById(cId.getEngineer().getEngineerId());
-		return cId;
+				/*
+				 * complaintRepository.deleteById(cId.getEngineer().getEngineerId()); return
+				 * cId;
+				 */
+		return null;
 	}
 	
 }
