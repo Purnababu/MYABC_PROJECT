@@ -7,7 +7,6 @@ import com.example.ABCElectronic_smartDevice.entity.Engineer;
 import com.example.ABCElectronic_smartDevice.entity.Product;
 import com.example.ABCElectronic_smartDevice.exceptions.InValidModelNumberException;
 import com.example.ABCElectronic_smartDevice.exceptions.OutOfWarrantyException;
-import com.example.ABCElectronic_smartDevice.exceptions.ProductAllreadyExistException;
 import com.example.ABCElectronic_smartDevice.exceptions.ResourceNotFoundException;
 
 public interface IProductServices {
@@ -15,15 +14,15 @@ public interface IProductServices {
 	
 		public void addproduct(Product product) throws  ResourceNotFoundException;
 
-		public void removeProducts(String modelnumber) throws ResourceNotFoundException ;
+		public void removeProducts(int modelNumber) throws ResourceNotFoundException ;
 
-		public List<Product> getProduct(String modelnumber) throws InValidModelNumberException ;
+		public List<Product> getProduct(int modelNumber) throws InValidModelNumberException ;
 
-		public List<Complaint> getProductComplients(String modelnumber) throws InValidModelNumberException;
+		public List<Complaint> getProductComplients(int modelNumber) throws InValidModelNumberException;
 
-		public void updateProductWarrenty(String productname) throws OutOfWarrantyException;
+		public void updateProductWarrenty(Product product) throws OutOfWarrantyException;
 
-		public List<Engineer> getEngineerByProduct(String productname) throws ResourceNotFoundException;
+		public Engineer getEngineerByProduct(int modelNumber) throws ResourceNotFoundException;
 
 		
 	}

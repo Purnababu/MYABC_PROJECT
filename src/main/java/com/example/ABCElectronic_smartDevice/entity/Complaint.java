@@ -1,13 +1,8 @@
 package com.example.ABCElectronic_smartDevice.entity;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,26 +16,26 @@ import lombok.NoArgsConstructor;
 public class Complaint {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int complaintid;
+	private int complaintId;
 
 	private String complaintName;
 	private String status;
-	@ManyToOne()
+	@ManyToOne
 	private Engineer engineer;
 
-	@ManyToOne()
-	private Client client;
-
-	@ManyToOne()
-	private Product product;
-
+	
+	 @ManyToOne 
+	 private Client client;
+	  
+	/* @ManyToOne
+	 private Product produ*/
+	 
 	public int getComplaintid() {
-		return complaintid;
+		return complaintId;
 	}
 
 	public void setComplaintid(int complaintid) {
-		this.complaintid = complaintid;
+		this.complaintId = complaintid;
 	}
 
 	public String getComplaintName() {
@@ -67,41 +62,29 @@ public class Complaint {
 		this.engineer = engineer;
 	}
 
-	public Client getClient() {
-		return client;
-	}
+	
+	 // public Client getClient() { return client; }
+	  
+//	  public void setClient(Client client) { this.client = client; }
+	 
 
-	public void setClient(Client client) {
-		this.client = client;
-	}
-
-	public Product getProduct() {
-		return product;
-	}
-
-	public void setProduct(Product product) {
-		this.product = product;
-	}
-
-	public Complaint(int complaintid, String complaintName, String status, Engineer engineer, Client client,
-			Product product) {
+	public Complaint(int complaintid, String complaintName, String status, Engineer engineer, Client client) {
 		super();
-		this.complaintid = complaintid;
+		this.complaintId = complaintid;
 		this.complaintName = complaintName;
 		this.status = status;
 		this.engineer = engineer;
-		this.client = client;
-		this.product = product;
+	//	this.client = client;
+
 	}
 
+	
 	public Complaint() {
 		super();
 	}
 
-	@Override
-	public String toString() {
-		return "Complaint [complaintid=" + complaintid + ", complaintName=" + complaintName + ", status=" + status
-				+ ", engineer=" + engineer + ", client=" + client + ", product=" + product + "]";
-	}
 	
+
+	
+
 }

@@ -21,23 +21,22 @@ import lombok.NoArgsConstructor;
 public class Client {
 
 	@Id
-
-	private String clientid;
+	private int clientId;
 	private String password;
 	private String address;
-	private long phonenumber;
+	private long phoneNumber;
 	@OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
 	private Product product;
 
-	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "client")
-	private List<Complaint> complaint;
+	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+	private List<Complaint> complaints;
 
-	public String getClientid() {
-		return clientid;
+	public int getClientid() {
+		return clientId;
 	}
 
-	public void setClientid(String clientid) {
-		this.clientid = clientid;
+	public void setClientid(int clientid) {
+		this.clientId = clientid;
 	}
 
 	public String getPassword() {
@@ -57,11 +56,11 @@ public class Client {
 	}
 
 	public long getPhonenumber() {
-		return phonenumber;
+		return phoneNumber;
 	}
 
 	public void setPhonenumber(long phonenumber) {
-		this.phonenumber = phonenumber;
+		this.phoneNumber = phonenumber;
 	}
 
 	public Product getProduct() {
@@ -73,32 +72,28 @@ public class Client {
 	}
 
 	public List<Complaint> getComplaint() {
-		return complaint;
+		return getComplaint();
 	}
 
 	public void setComplaint(List<Complaint> complaint) {
-		this.complaint = complaint;
+		this.complaints = complaint;
 	}
 
-	public Client(String clientid, String password, String address, long phonenumber, Product product,
+	public Client(int clientid, String password, String address, long phonenumber, Product product,
 			List<Complaint> complaint) {
 		super();
-		this.clientid = clientid;
+		this.clientId = clientid;
 		this.password = password;
 		this.address = address;
-		this.phonenumber = phonenumber;
+		this.phoneNumber = phonenumber;
 		this.product = product;
-		this.complaint = complaint;
+		this.complaints = complaint;
 	}
 
 	public Client() {
 		super();
 	}
 
-	@Override
-	public String toString() {
-		return "Client [clientid=" + clientid + ", password=" + password + ", address=" + address + ", phonenumber="
-				+ phonenumber + ", product=" + product + ", complaint=" + complaint + "]";
-	}
+	
 
 }

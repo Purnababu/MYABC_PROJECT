@@ -3,7 +3,9 @@ package com.example.ABCElectronic_smartDevice.entity;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -17,68 +19,55 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 
-
 public class Product {
 
-	
 	@Id
-	private String modelnumber;
-	private String productname;
-	private String productcategoryname;
-	private LocalDate dateofpurchase;
-	private LocalDate warrantydate;
-	private int warrantyyear;
-	@OneToMany
+	private int modelNumber;
+	private String productName;
+	private String productCategoryName;
+	private LocalDate dateOfPurchase;
+	private LocalDate warrantyDate;
+	private int warrantyYear;
+
+	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
 	private List<Complaint> complaints;
-	public String getModelnumber() {
-		return modelnumber;
+	@OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+	private Engineer engineer;
+	public int getModelNumber() {
+		return modelNumber;
 	}
-	public void setModelnumber(String modelnumber) {
-		this.modelnumber = modelnumber;
+	public void setModelNumber(int modelNumber) {
+		this.modelNumber = modelNumber;
 	}
-	public String getProductname() {
-		return productname;
+	public String getProductName() {
+		return productName;
 	}
-	public void setProductname(String productname) {
-		this.productname = productname;
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
-	public String getProductcategoryname() {
-		return productcategoryname;
+	public String getProductCategoryName() {
+		return productCategoryName;
 	}
-	public void setProductcategoryname(String productcategoryname) {
-		this.productcategoryname = productcategoryname;
+	public void setProductCategoryName(String productCategoryName) {
+		this.productCategoryName = productCategoryName;
 	}
-	public LocalDate getDateofpurchase() {
-		return dateofpurchase;
+	public LocalDate getDateOfPurchase() {
+		return dateOfPurchase;
 	}
-	public void setDateofpurchase(LocalDate dateofpurchase) {
-		this.dateofpurchase = dateofpurchase;
+	public void setDateOfPurchase(LocalDate dateOfPurchase) {
+		this.dateOfPurchase = dateOfPurchase;
 	}
-	public LocalDate getWarrantydate() {
-		return warrantydate;
+	public LocalDate getWarrantyDate() {
+		return warrantyDate;
 	}
-	public void setWarrantydate(LocalDate warrantydate) {
-		this.warrantydate = warrantydate;
+	public void setWarrantyDate(LocalDate warrantyDate) {
+		this.warrantyDate = warrantyDate;
 	}
-	public int getWarrantyyear() {
-		return warrantyyear;
+	public int getWarrantyYear() {
+		return warrantyYear;
 	}
-	public void setWarrantyyear(int warrantyyear) {
-		this.warrantyyear = warrantyyear;
-	}
-	
-	
-	public Product(String modelnumber, String productname, String productcategoryname, LocalDate dateofpurchase,
-			LocalDate warrantydate, int warrantyyear, Client client) {
-		super();
-		this.modelnumber = modelnumber;
-		this.productname = productname;
-		this.productcategoryname = productcategoryname;
-		this.dateofpurchase = dateofpurchase;
-		this.warrantydate = warrantydate;
-		this.warrantyyear = warrantyyear;
-		
-	
+	public void setWarrantyYear(int warrantyYear) {
+		this.warrantyYear = warrantyYear;
 	}
 	public List<Complaint> getComplaints() {
 		return complaints;
@@ -86,19 +75,31 @@ public class Product {
 	public void setComplaints(List<Complaint> complaints) {
 		this.complaints = complaints;
 	}
-	public Product(List<Complaint> complaints) {
+	public Engineer getEngineer() {
+		return engineer;
+	}
+	public void setEngineer(Engineer engineer) {
+		this.engineer = engineer;
+	}
+	public Product(int modelNumber, String productName, String productCategoryName, LocalDate dateOfPurchase,
+			LocalDate warrantyDate, int warrantyYear, List<Complaint> complaints, Engineer engineer) {
 		super();
+		this.modelNumber = modelNumber;
+		this.productName = productName;
+		this.productCategoryName = productCategoryName;
+		this.dateOfPurchase = dateOfPurchase;
+		this.warrantyDate = warrantyDate;
+		this.warrantyYear = warrantyYear;
 		this.complaints = complaints;
+		this.engineer = engineer;
 	}
 	public Product() {
 		super();
 	}
-	@Override
-	public String toString() {
-		return "Product [modelnumber=" + modelnumber + ", productname=" + productname + ", productcategoryname="
-				+ productcategoryname + ", dateofpurchase=" + dateofpurchase + ", warrantydate=" + warrantydate
-				+ ", warrantyyear=" + warrantyyear + ", complaints=" + complaints + "]";
-	}
+
+	
+	
+
 	
 	}
-	
+

@@ -1,10 +1,11 @@
 package com.example.ABCElectronic_smartDevice.services.Impl;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.stereotype.Service;
 import com.example.ABCElectronic_smartDevice.entity.Complaint;
 import com.example.ABCElectronic_smartDevice.entity.Engineer;
 import com.example.ABCElectronic_smartDevice.entity.Product;
@@ -16,62 +17,82 @@ import com.example.ABCElectronic_smartDevice.repository.IEngineerRepository;
 import com.example.ABCElectronic_smartDevice.repository.IProductRepository;
 import com.example.ABCElectronic_smartDevice.services.IProductServices;
 
-@SuppressWarnings("unchecked")
-
+@Service
 public class IProductServiceImpl implements IProductServices {
 	@Autowired
-	private IProductRepository productrepository;
+	private IProductRepository productRepository;
 	@Autowired
-	private IComplaintRepository complaintrepository;
+	private IComplaintRepository complaintRepository;
 	@Autowired
-	private IEngineerRepository engineerrepository;
+	private IEngineerRepository engineerRepository;
 
 	@Override
 	public void addproduct(Product product) throws ResourceNotFoundException {
-		Optional<?> productname = productrepository.getProductByproductname(product.getProductname());
-		if (productname.isPresent()) {
-			throw new ResourceNotFoundException("product name already exist.......");
+		Optional<Product> existproduct = productRepository.findById(product.getModelNumber());
+		if (existproduct.isPresent()) {
+			throw new ResourceNotFoundException("product modelnumber already exist.......");
 		} else {
-			productrepository.save(product);
+			product.setDateOfPurchase(LocalDate.now());
+			product.setWarrantyDate(LocalDate.of(2026, 8, 1));
+			productRepository.save(product);
 		}
 	}
 
 	@Override
-	public void removeProducts(String modelnumber) throws ResourceNotFoundException {
-		Product mnum = productrepository.getProductByModelnumber(modelnumber)
-				.orElseThrow(() -> new ResourceNotFoundException("modelnumber not found:" + modelnumber));
-		productrepository.delete(mnum);
+	public void removeProducts(int modelNumber) throws ResourceNotFoundException {
+		Product mnum = productRepository.findById(modelNumber)
+				.orElseThrow(() -> new ResourceNotFoundException("modelnumber not found:" + modelNumber));
+		productRepository.delete(mnum);
 	}
 
 	@Override
-	public List<Product> getProduct(String modelnumber) throws InValidModelNumberException {
-		Product list1 = productrepository.getProductByModelnumber(modelnumber)
-				.orElseThrow(() -> new InValidModelNumberException("modelnumber not found exception:" + modelnumber));
-		return (List<Product>) productrepository.save(list1);
+	public List<Product> getProduct(int modelNumber) throws InValidModelNumberException {
+		Product product1 = productRepository.findById(modelNumber)
+				.orElseThrow(() -> new InValidModelNumberException("modelnumber not found exception:" + modelNumber));
+		 List<Product> productList = new ArrayList<>();
+		    productList.add(product1);
+
+		    return productList;
 
 	}
 	
 	@Override
-	public void updateProductWarrenty(String productname) throws OutOfWarrantyException {
-		Product pwar = productrepository.getProductByproductname(productname)
-				.orElseThrow(() -> new OutOfWarrantyException("out of warranty exception:" + productname));
-		productrepository.save(pwar);
+	public void updateProductWarrenty(Product product) throws OutOfWarrantyException {
+		Product Pwarnty= productRepository.findById(product.getModelNumber())
+				.orElseThrow(() -> new OutOfWarrantyException("out of warranty exception:" + product.getModelNumber()));
+		Pwarnty.setWarrantyDate(product.getWarrantyDate());
+		productRepository.save(Pwarnty);
 	}
 
 	@Override
-	public List<Engineer> getEngineerByProduct(String productname) throws ResourceNotFoundException {
-		Product list3 = productrepository.getProductByproductname(productname)
-				.orElseThrow(() -> new ResourceNotFoundException("product not found exception:" + productname));
-		return (List<Engineer>) productrepository.save(list3);
+	public Engineer getEngineerByProduct(int modelNumber) throws ResourceNotFoundException {
+
 		
+		  Product product = productRepository.findById(modelNumber)
+		  .orElseThrow(() -> new ResourceNotFoundException("Product not found: " +
+		  modelNumber));
+		  
+		 Engineer engineers = product.getEngineer();
+		  
+		  if(engineers==null) { throw new
+		  ResourceNotFoundException("No engineers found for product: " + modelNumber);
+		  }
+		 
+	    return engineers;
 	}
 
 	@Override
-	public List<Complaint> getProductComplients(String modelnumber) throws InValidModelNumberException {
+	public List<Complaint> getProductComplients(int modelNumber) throws InValidModelNumberException {
 	
-		Product list2 = productrepository.getProductByModelnumber(modelnumber)
-				.orElseThrow(() -> new InValidModelNumberException("modelnumber not found exception:" + modelnumber));
-		return (List<Complaint>) productrepository.save(list2);
+		Product product = productRepository.findById(modelNumber)
+				.orElseThrow(() -> new InValidModelNumberException("modelnumber not found exception:" + modelNumber));
+		List<Complaint> complaints = product.getComplaints();
+
+	    if (complaints.isEmpty()) {
+	        throw new InValidModelNumberException("No complaints found for model number: " + modelNumber);
+	    }
+
+	    return complaints;
 	}
 	}
 

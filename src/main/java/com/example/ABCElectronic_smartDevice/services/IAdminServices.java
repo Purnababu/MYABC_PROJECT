@@ -7,14 +7,14 @@ public interface IAdminServices {
 
 	public void addEngineer(Engineer engineer);
 
-	public void changeDomain(int engineerid, String domain);
+	public void changeDomain(int engineerId, String domain);
 
-	public void removeEngineer(int Integerid);
+	public void removeEngineer(int engineerId);
 
-	public java.util.List<Complaint> getComplientsByProducts(String modelnumber);
+	public java.util.List<Complaint> getComplientsByProducts(int modelNumber);
 
-	public java.util.List<Complaint> getComplients(String complientname, int modelnumber);
+	public java.util.List<Complaint> getComplients(String complaintName, int modelNumber);
 
-	public Complaint replaceEngineerFromComplient(int Complientid); 
+	public Complaint replaceEngineerFromComplient(int ComplientId); 
 
 }
