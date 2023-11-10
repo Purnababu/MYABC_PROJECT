@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 public class Client {
 
 	@Id
-	private String clientId;
+	private int clientId;
 	private String password;
 	private String address;
 	private long phoneNumber;
@@ -28,7 +28,7 @@ public class Client {
 	@OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
 	private Product product;
 
-	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "client")
+	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
 	private List<Complaint> complaints;
 
 }
