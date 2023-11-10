@@ -3,7 +3,6 @@ package com.example.ABCElectronic_smartDevice.entity;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,7 +19,7 @@ public class Complaint {
 
 	@ManyToOne
 	private Engineer engineer;
-	
+
 	@ManyToOne
 	private Client client;
 }

@@ -21,8 +21,9 @@ public interface IClientService
 	public List<Engineer> getEngineerByDomains(String domain) throws InValidDomainException;
 	
 	public String changeStatusOfComplaint(Complaint complaint) throws InValidComplaintIdException;
-	
+
 	public Client signIn(Client client);
-	
+
 	public Client signOut(Client client);
+	
 }
