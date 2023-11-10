@@ -11,6 +11,7 @@ import com.example.ABCElectronic_smartDevice.entity.Complaint;
 import com.example.ABCElectronic_smartDevice.entity.Engineer;
 import com.example.ABCElectronic_smartDevice.entity.Product;
 import com.example.ABCElectronic_smartDevice.exceptions.ResourceNotFoundException;
+import com.example.ABCElectronic_smartDevice.repository.IClientRepository;
 import com.example.ABCElectronic_smartDevice.repository.IComplaintRepository;
 import com.example.ABCElectronic_smartDevice.repository.IEngineerRepository;
 import com.example.ABCElectronic_smartDevice.repository.IProductRepository;
@@ -28,23 +29,21 @@ public class IComplaintServiceImpl implements IComplaintService {
 	@Autowired
 	private IProductRepository pr;
 
-	///////// add complaint to the db//////////////
+	@Autowired
+	private IClientRepository ice;
+
 	@Override
-	public boolean bookComplaint(Client client, Complaint complaint, Product product) {
-		Optional<Complaint> existingComplaint = cmr.findById(complaint.getComplaintId());
+	public boolean bookComplaint(int clientId, Complaint complaint, int modelNumber) throws ResourceNotFoundException {
+		Client c = ice.findById(clientId).orElseThrow(() -> new ResourceNotFoundException("client not exsits"));
+		Product p = pr.findById(modelNumber).orElseThrow(() -> new ResourceNotFoundException("product not exsits"));
+		complaint.setClient(c);
+		//complaint.setProduct(p);
 
-		if (existingComplaint.isPresent()) {
-
-			return false;
-		} else {
-
-			cmr.save(complaint);
-			return true;
-		}
+		cmr.save(complaint);
+		return true;
 
 	}
 
-	/////////// getting Complaints List from db/////////
 	@Override
 	public List<Complaint> getClientAllComplaints(Client client) throws ResourceNotFoundException {
 		List<Complaint> lf = cmr.findAll();
@@ -75,7 +74,7 @@ public class IComplaintServiceImpl implements IComplaintService {
 	//// id isthe daniki sambandinchina product vasthundhi
 	@Override
 	public Product getProductByComplaint(int complaintId) {
-		Optional<Complaint> exsists = cmr.findById(complaintId);
+		Optional<Client> exsists = ice.findById(complaintId);
 		if (exsists.isPresent()) {
 			return exsists.get().getProduct();
 		} else {

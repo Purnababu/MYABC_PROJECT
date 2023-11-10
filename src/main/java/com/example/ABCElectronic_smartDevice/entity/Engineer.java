@@ -21,11 +21,11 @@ import lombok.NoArgsConstructor;
 public class Engineer 
 {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	
 	private int engineerId;
 	private String engineerName;
 	private String password;
 	private String domain;
-	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy ="engineer")
+	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
 	private List<Complaint> complaints;
 }

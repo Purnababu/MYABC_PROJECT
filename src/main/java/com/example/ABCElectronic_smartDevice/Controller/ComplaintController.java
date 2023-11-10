@@ -26,14 +26,14 @@ public class ComplaintController {
 	@Autowired
 	private IComplaintService crs;
 
-	@PostMapping("/api/bookcomplaint")
-	public ResponseEntity<?> bookComplaint(@RequestBody Client client, Complaint complaint, Product product) {
+	@PostMapping("/bookcomplaint/{clientId}/{modelNumber}")
+	public ResponseEntity<?> bookComplaint(@PathVariable int clientId, @RequestBody Complaint complaint,
+			@PathVariable int modelNumber) throws ResourceNotFoundException {
 
-		boolean b = crs.bookComplaint(client, complaint, product);
-		return new ResponseEntity<>(b, HttpStatus.CREATED);
+		return new ResponseEntity<>(crs.bookComplaint(clientId, complaint, modelNumber), HttpStatus.CREATED);
 	}
 
-	@GetMapping(value = "//viweall-complaints", produces = "application/json")
+	@GetMapping("/viewcomplaints")
 	public ResponseEntity<List<Complaint>> getClientAllComplaints(Client client) throws ResourceNotFoundException {
 		return new ResponseEntity<List<Complaint>>(crs.getClientAllComplaints(client), HttpStatus.OK);
 	}
