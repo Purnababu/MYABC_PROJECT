@@ -26,5 +26,6 @@ public class AbcElectronicSmartDeviceApplication {
 		return new Docket(DocumentationType.SWAGGER_2).select()
 			.apis(RequestHandlerSelectors.basePackage("com.example.ABCElectronic_smartDevice")).build();
 		}
+}
 
 //http://localhost:8080/swagger-ui.html#/

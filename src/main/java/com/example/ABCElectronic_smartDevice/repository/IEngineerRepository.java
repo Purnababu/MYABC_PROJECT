@@ -31,4 +31,7 @@ public interface IEngineerRepository extends JpaRepository<Engineer, Integer> {
 	@Query("SELECT c FROM Complaint c where  c.engineer = ?1")
 	public List<Complaint> getComplaints(@Param("engineer") Engineer engineer,
 			@Param("complaintName") String complaintName);
+	
+	@Query(value = "select e from Engineer e where e.domain=?1")
+	public List<Engineer> getEngineersByDomain(String domain);
 }

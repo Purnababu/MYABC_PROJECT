@@ -13,15 +13,15 @@ import com.example.ABCElectronic_smartDevice.exceptions.ResourceNotFoundExceptio
 
 public interface IClientService {
 
-	public void saveClient(Client client);
+	public void saveClient(Client client) throws ResourceNotFoundException;
 
-	public Client getClientByCLientId(int clientId);
+	public Client getClientByClientId(int clientId) throws ResourceNotFoundException;
 
-	public Engineer getEngineerById(int engineerId);
+	public Engineer getEngineerById(int engineerId) throws InValidEngineerIdException;
 
-	public List<Engineer> getEngineerByDomain(String domain);
+	public List<Engineer> getEngineerByDomain(String domain) throws InValidDomainException;
 
-	public String changestatusOfcomplaint(Complaint complaint);
+	public String changeStatusOfComplaint(Complaint complaint) throws InValidComplaintIdException;
 
 	public Client signIn(Client client);
 

@@ -60,7 +60,7 @@ public class IClientServiceImpl implements IClientService
 	}
 
 	@Override
-	public List<Engineer> getEngineerByDomains(String domain) throws InValidDomainException 
+	public List<Engineer> getEngineerByDomain(String domain) throws InValidDomainException 
 	{
 		List<Engineer> engineersByDomain = engineerRepository.getEngineersByDomain(domain);
 		if(engineersByDomain.isEmpty()) {throw new InValidDomainException("No Engineers Found..!!!");}

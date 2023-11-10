@@ -50,7 +50,7 @@ public class ClientController
 	public ResponseEntity<List<Engineer>> getEngineerByDomains(@PathVariable String domain) throws Exception
 	{
 		if(domain==null) {throw new Exception("Domain cant be Empty");}
-		else {return new ResponseEntity<>(clientService.getEngineerByDomains(domain),HttpStatus.OK);}
+		else {return new ResponseEntity<>(clientService.getEngineerByDomain(domain),HttpStatus.OK);}
 	}
 	
 	@PutMapping("/changeStatus")

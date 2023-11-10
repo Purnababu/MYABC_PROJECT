@@ -55,10 +55,4 @@ public class GlobleExceptionHandler {
 		return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
 	}
 
-	@ExceptionHandler(InValidModelNumberException.class)
-	public ResponseEntity<?> handleModelNumberException(InValidModelNumberException ex, WebRequest request)
-	{
-		ErrorDetails error=new ErrorDetails(new Date(),ex.getMessage(),request.getDescription(false));
-		return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
-	}
 }

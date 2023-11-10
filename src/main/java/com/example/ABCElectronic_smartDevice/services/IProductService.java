@@ -22,3 +22,4 @@ public interface IProductService {
 	public void updateProductWarrenty(Product product) throws OutOfWarrantyException;
 
 	public Engineer getEngineerByProduct(int modelNumber) throws ResourceNotFoundException;
+}
