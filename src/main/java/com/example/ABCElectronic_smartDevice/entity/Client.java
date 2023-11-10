@@ -18,7 +18,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Client {
-
 	@Id
 	private int clientId;
 	private String password;
@@ -30,5 +29,4 @@ public class Client {
 
 	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
 	private List<Complaint> complaints;
-
 }

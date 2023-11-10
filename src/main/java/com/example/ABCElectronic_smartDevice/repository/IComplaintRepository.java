@@ -1,5 +1,4 @@
 package com.example.ABCElectronic_smartDevice.repository;
-
 import java.util.List;
 import java.util.Optional;
 

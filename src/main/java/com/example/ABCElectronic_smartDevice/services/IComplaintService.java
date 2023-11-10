@@ -21,3 +21,4 @@ public interface IComplaintService {
 	public Product getProductByComplaint(int complaintId);
 
 }
+

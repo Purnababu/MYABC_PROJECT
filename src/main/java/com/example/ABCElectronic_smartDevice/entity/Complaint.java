@@ -29,6 +29,8 @@ public class Complaint {
      @ManyToOne
 	private Client client;
 
+
 //	@ManyToOne
 //	private Product product;
+
 }

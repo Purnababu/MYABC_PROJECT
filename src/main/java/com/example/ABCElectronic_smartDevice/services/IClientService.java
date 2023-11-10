@@ -5,6 +5,11 @@ import java.util.List;
 import com.example.ABCElectronic_smartDevice.entity.Client;
 import com.example.ABCElectronic_smartDevice.entity.Complaint;
 import com.example.ABCElectronic_smartDevice.entity.Engineer;
+import com.example.ABCElectronic_smartDevice.exceptions.InValidComplaintIdException;
+import com.example.ABCElectronic_smartDevice.exceptions.InValidDomainException;
+import com.example.ABCElectronic_smartDevice.exceptions.InValidEngineerIdException;
+import com.example.ABCElectronic_smartDevice.exceptions.ResourceNotFoundException;
+
 
 public interface IClientService {
 
@@ -21,5 +26,4 @@ public interface IClientService {
 	public Client signIn(Client client);
 
 	public Client signOut(Client client);
-
 }

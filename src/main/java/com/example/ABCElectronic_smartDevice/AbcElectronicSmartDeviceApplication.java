@@ -15,16 +15,16 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringBootApplication
 public class AbcElectronicSmartDeviceApplication {
 
+	final static org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(AbcElectronicSmartDeviceApplication.class);
+
 	public static void main(String[] args) {
 		SpringApplication.run(AbcElectronicSmartDeviceApplication.class, args);
 
 	}
 
-	@Bean
-	public Docket api() {
+    Docket productApi() {
 		return new Docket(DocumentationType.SWAGGER_2).select()
-				.apis(RequestHandlerSelectors.basePackage("com.example.ABCElectronic_smartDevice"))
-				.paths(PathSelectors.any()).build();
-	}
-}
+			.apis(RequestHandlerSelectors.basePackage("com.example.ABCElectronic_smartDevice")).build();
+		}
+
 //http://localhost:8080/swagger-ui.html#/
