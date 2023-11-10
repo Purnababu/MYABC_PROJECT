@@ -24,23 +24,24 @@ public class GlobleExceptionHandler {
 		return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
 	}
 
-
-
 	@ExceptionHandler(InValidClientIdException.class)
 	public ResponseEntity<?> handlerCustomerAlreadyExistsException(InValidClientIdException ex, WebRequest request) {
-
 		ErrorDetails error = new ErrorDetails(new Date(), ex.getMessage(), request.getDescription(false));
 		return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
 	}
-	
-	@ExceptionHandler(InValidEngineerIdException .class)
 
+	@ExceptionHandler(InValidDomainException.class)
+	public ResponseEntity<?> handlerCustomerAlreadyExistsException(InValidDomainException ex, WebRequest request) {
+		ErrorDetails error = new ErrorDetails(new Date(), ex.getMessage(), request.getDescription(false));
+		return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+	}
+  
+	@ExceptionHandler(InValidEngineerIdException .class)
 	public ResponseEntity<?> handlerCustomerAlreadyExistsException(InValidEngineerIdException ex, WebRequest request) {
 		ErrorDetails error = new ErrorDetails(new Date(), ex.getMessage(), request.getDescription(false));
 		return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
 	}
 
-	
 	@ExceptionHandler(InValidModelNumberException.class)
 	public ResponseEntity<?> handleModelNumberException(InValidModelNumberException ex, WebRequest request)
 	{
@@ -48,6 +49,16 @@ public class GlobleExceptionHandler {
 		return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
 	}
 
+	@ExceptionHandler(OutOfWarrantyException.class)
+	public ResponseEntity<?> handlerCustomerAlreadyExistsException(OutOfWarrantyException ex, WebRequest request) {
+		ErrorDetails error = new ErrorDetails(new Date(), ex.getMessage(), request.getDescription(false));
+		return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+	}
 
-
+	@ExceptionHandler(InValidModelNumberException.class)
+	public ResponseEntity<?> handleModelNumberException(InValidModelNumberException ex, WebRequest request)
+	{
+		ErrorDetails error=new ErrorDetails(new Date(),ex.getMessage(),request.getDescription(false));
+		return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+	}
 }

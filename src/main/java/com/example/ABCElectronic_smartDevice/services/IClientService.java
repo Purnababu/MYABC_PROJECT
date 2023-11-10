@@ -25,5 +25,4 @@ public interface IClientService
 	public Client signIn(Client client);
 
 	public Client signOut(Client client);
-	
 }

@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 import com.example.ABCElectronic_smartDevice.entity.Complaint;
 import com.example.ABCElectronic_smartDevice.entity.Engineer;
 import com.example.ABCElectronic_smartDevice.entity.Product;
@@ -17,7 +18,6 @@ import com.example.ABCElectronic_smartDevice.repository.IComplaintRepository;
 import com.example.ABCElectronic_smartDevice.repository.IEngineerRepository;
 import com.example.ABCElectronic_smartDevice.repository.IProductRepository;
 import com.example.ABCElectronic_smartDevice.services.IAdminService;
-
 @Service
 public class IAdminServiceImpl implements IAdminService
 {
@@ -79,11 +79,9 @@ public class IAdminServiceImpl implements IAdminService
 	{
 		Complaint cId = complaintRepository.findById(complaintId).orElseThrow(()->
 				new InValidComplaintIdException("Complaint Id doesnot Exists with Id :"+complaintId));
-				/*
-				 * complaintRepository.deleteById(cId.getEngineer().getEngineerId()); return
-				 * cId;
-				 */
-		return null;
+		complaintRepository.deleteById(cId.getEngineer().getEngineerId());
+		return cId;
+
 	}
 	
 }

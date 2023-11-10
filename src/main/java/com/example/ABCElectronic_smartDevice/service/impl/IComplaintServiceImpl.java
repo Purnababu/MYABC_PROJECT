@@ -32,23 +32,18 @@ public class IComplaintServiceImpl implements IComplaintService {
 	@Autowired
 	private IClientRepository ice;
 
-	///////// add complaint to the db//////////////
 	@Override
-	public boolean bookComplaint(int clientId, Complaint complaint, int modelNumber) {
-		Optional<Complaint> existingComplaint = cmr.findById(complaint.getComplaintId());
+	public boolean bookComplaint(int clientId, Complaint complaint, int modelNumber) throws ResourceNotFoundException {
+		Client c = ice.findById(clientId).orElseThrow(() -> new ResourceNotFoundException("client not exsits"));
+		Product p = pr.findById(modelNumber).orElseThrow(() -> new ResourceNotFoundException("product not exsits"));
+		complaint.setClient(c);
+		//complaint.setProduct(p);
 
-		if (existingComplaint.isPresent()) {
-
-			return false;
-		} else {
-
-			cmr.save(complaint);
-			return true;
-		}
+		cmr.save(complaint);
+		return true;
 
 	}
 
-	/////////// getting Complaints List from db/////////
 	@Override
 	public List<Complaint> getClientAllComplaints(Client client) throws ResourceNotFoundException {
 		List<Complaint> lf = cmr.findAll();

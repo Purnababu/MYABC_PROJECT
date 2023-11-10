@@ -6,7 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.example.ABCElectronic_smartDevice.entity.Client;
 
 @Repository
-public interface IClientRepository extends JpaRepository<Client, Integer> 
-{
+public interface IClientRepository extends JpaRepository<Client, Integer> {
 	
 }
