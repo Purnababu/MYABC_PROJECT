@@ -7,6 +7,5 @@ import com.example.ABCElectronic_smartDevice.entity.Client;
 
 @Repository
 public interface IClientRepository extends JpaRepository<Client, Integer> {
-
 	
 }

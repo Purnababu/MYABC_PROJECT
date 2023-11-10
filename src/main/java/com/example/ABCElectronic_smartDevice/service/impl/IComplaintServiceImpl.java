@@ -28,7 +28,7 @@ public class IComplaintServiceImpl implements IComplaintService {
 
 	@Autowired
 	private IProductRepository pr;
-
+	
 	@Autowired
 	private IClientRepository ice;
 

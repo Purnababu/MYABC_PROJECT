@@ -1,5 +1,4 @@
 package com.example.ABCElectronic_smartDevice.repository;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -21,5 +20,4 @@ public interface IComplaintRepository extends JpaRepository<Complaint, Integer> 
 
 	@Query("SELECT c FROM Complaint c WHERE c.engineer = :engineer AND c.status = 'OPEN'")
 	List<Complaint> getClientAllOpenComplaints(@Param("engineer") Engineer engineer);
-
 }
