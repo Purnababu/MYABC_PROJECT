@@ -10,17 +10,18 @@ import com.example.ABCElectronic_smartDevice.exceptions.InValidDomainException;
 import com.example.ABCElectronic_smartDevice.exceptions.InValidEngineerIdException;
 import com.example.ABCElectronic_smartDevice.exceptions.ResourceNotFoundException;
 
-public interface IClientService 
-{
-	public void saveClient(Client client) throws ResourceNotFoundException;
-	
-	public Client getClientByClientId(int clientId) throws ResourceNotFoundException;
-	
-	public Engineer getEngineerById(int engineerId) throws InValidEngineerIdException;
-	
-	public List<Engineer> getEngineerByDomains(String domain) throws InValidDomainException;
-	
-	public String changeStatusOfComplaint(Complaint complaint) throws InValidComplaintIdException;
+
+public interface IClientService {
+
+	public void saveClient(Client client);
+
+	public Client getClientByCLientId(int clientId);
+
+	public Engineer getEngineerById(int engineerId);
+
+	public List<Engineer> getEngineerByDomain(String domain);
+
+	public String changestatusOfcomplaint(Complaint complaint);
 
 	public Client signIn(Client client);
 

@@ -19,11 +19,11 @@ import lombok.NoArgsConstructor;
 public class Engineer 
 {
 	@Id
+
 	private int engineerId;
 	private String engineerName;
 	private String password;
 	private String domain;
-  
 	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
 	private List<Complaint> complaints;
 }

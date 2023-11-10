@@ -17,13 +17,20 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Complaint {
 	@Id
+
 	private int complaintId;
 	private String complaintName;
 	private String status;
 
 	@ManyToOne
+	@JoinColumn(name = "engineer_id")
 	private Engineer engineer;
 
-	@ManyToOne
+     @ManyToOne
 	private Client client;
+
+
+//	@ManyToOne
+//	private Product product;
+
 }

@@ -38,7 +38,6 @@ public class IComplaintServiceImpl implements IComplaintService {
 		Product p = pr.findById(modelNumber).orElseThrow(() -> new ResourceNotFoundException("product not exsits"));
 		complaint.setClient(c);
 		//complaint.setProduct(p);
-
 		cmr.save(complaint);
 		return true;
 

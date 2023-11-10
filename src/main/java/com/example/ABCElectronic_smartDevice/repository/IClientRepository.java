@@ -9,6 +9,8 @@ import com.google.common.base.Optional;
 
 @Repository
 public interface IClientRepository extends JpaRepository<Client, Integer> {
+
 	@Query(value = "select e from Engineer e where e.engineerName=?1")
 	public Optional<?> getEngineerName(String engineerName);
+
 }
