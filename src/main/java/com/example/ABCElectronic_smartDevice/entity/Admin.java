@@ -25,6 +25,7 @@ public class Admin {
 	private String emailId;
 	@OneToOne
 	private Product product;
+
 	public int getAdminid() {
 		return adminId;
 	}
