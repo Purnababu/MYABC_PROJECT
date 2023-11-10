@@ -1,4 +1,4 @@
-package com.example.ABCElectronic_smartDevice.controller;
+package com.example.ABCElectronic_smartDevice.Controller;
 
 import java.util.List;
 
